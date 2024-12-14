@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reputation Predictor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg">
+        <h1 class="text-2xl font-bold text-gray-800 text-center mb-6">User Reputation Prediction</h1>
+        
+        <!-- Display error messages if any -->
+        {% if error %}
+        <div class="mb-4 p-4 bg-red-100 text-red-600 rounded-md">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <!-- Prediction Form -->
+        <form method="post" class="space-y-4">
+            {% csrf_token %}
+            <div>
+                <label for="reputation" class="block text-sm font-medium text-gray-700">User Reputation:</label>
+                <input type="number" id="reputation" name="reputation" required 
+                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                       value="{{ user_reputation|default:'' }}">
+            </div>
+            <div>
+                <label for="mpxr" class="block text-sm font-medium text-gray-700">MPxR:</label>
+                <input type="number" step="0.01" id="mpxr" name="mpxr" required 
+                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                       value="{{ mpxr|default:'' }}">
+            </div>
+            <button type="submit" 
+                    class="w-full bg-indigo-600 text-white font-medium py-2 px-4 rounded-md hover:bg-indigo-700 transition">
+                Predict Quality
+            </button>
+        </form>
+
+        <!-- Display Prediction Results -->
+        {% if prediction %}
+        <div class="mt-6 p-4 bg-gray-50 rounded-md shadow-sm">
+            <h2 class="text-xl font-semibold text-gray-800 text-center">Prediction Results</h2>
+            <p class="mt-2 text-gray-700"><strong>User Reputation:</strong> {{ user_reputation }}</p>
+            <p class="text-gray-700"><strong>MPxR Delta:</strong> {{ mpxr }}</p>
+            <p class="text-gray-700"><strong>Predicted Post Quality:</strong> {{ prediction }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
