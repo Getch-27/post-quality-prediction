@@ -1,6 +1,6 @@
 # Post Quality Prediction
 
-This project is a web-based application built with the Django framework that predicts the quality of a user's post based on specific input parameters such as **User Reputation** and **MPXR Delta**. The application leverages a simple machine learning model (or predictive algorithm) to provide accurate quality predictions.
+This project is a web-based application built with the Django framework that predicts the quality of a user's post based on specific input parameters such as **User Reputation** and **MPXR**. The application leverages a simple machine learning model (or predictive algorithm) to provide accurate quality predictions.
 
 ## Tech Stack
 
